@@ -11,7 +11,8 @@ public class EvalVisitor {
 		}
 		else if(e instanceof NumExp){
 			NumExp t = (NumExp) e;
-			return t.getDatum();
+			return Integer.parseInt(t.getDatum());
 		}
+		return 0;
 	}
 }

@@ -46,10 +46,10 @@ public class TreeExp {
 				switch(current) {
 					case '+': stack.push(new PlusExp(left,right)); break;
 					case '-': stack.push(new MinusExp(left,right)); break;
-					case '*': stack.push(new MultiplyExp(left,right)); break;
+					case '*': stack.push(new TimesExp(left,right)); break;
 				}
 			} else {
-				stack.push(new Number(current+""));
+				stack.push(new NumExp(current+""));
 			}
 		}
 		return (Exp) stack.peek();

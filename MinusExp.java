@@ -1,11 +1,11 @@
 
-public class PlusExp extends Exp {
+public class MinusExp extends Exp {
 	private Exp left,right;
 	private String datum;
-	public PlusExp(Exp a1, Exp a2) {
+	public MinusExp(Exp a1, Exp a2) {
 		this.left = a1;
 		this.right = a2;
-		this.datum = "+"; 
+		this.datum = "-"; 
 	}
 	public Exp getLeft(){
 		return this.left;
@@ -18,7 +18,7 @@ public class PlusExp extends Exp {
 	}
 	@Override
 	public int eval() {
-		return this.left.eval() + this.right.eval();
+		return this.left.eval() - this.right.eval();
 	}
 
 }

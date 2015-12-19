@@ -9,9 +9,13 @@ public class NumExp extends Exp {
 	public String getDatum(){
 		return this.datum;
 	}
-	@Override
-	public int eval() {
+	
+	public int eval(){
 		return Integer.parseInt(this.datum);
+	}
+	
+	public Object accept(Visitor v){
+		return v.visit(this);
 	}
 
 }

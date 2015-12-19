@@ -5,4 +5,5 @@ public interface Visitor {
 	public Object visit(TimesExp n);
 	public Object visit(DivisionExp n);
 	public Object visit(NumExp n);
+	public Object visit(VarExp n);
 }

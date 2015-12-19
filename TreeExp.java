@@ -47,9 +47,13 @@ public class TreeExp {
 					case '+': stack.push(new PlusExp(left,right)); break;
 					case '-': stack.push(new MinusExp(left,right)); break;
 					case '*': stack.push(new TimesExp(left,right)); break;
+					case '/': stack.push(new DivisionExp(left,right)); break;
 				}
 			} else {
-				stack.push(new NumExp(current+""));
+				if(current == 'x')
+					stack.push(new VarExp());
+				else
+					stack.push(new NumExp(current+""));
 			}
 		}
 		return (Exp) stack.peek();

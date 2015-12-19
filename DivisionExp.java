@@ -8,6 +8,13 @@ public class DivisionExp extends Exp {
 		this.e2 = a2;
 		this.datum = "/";
 	}
+	public Exp gete1(){
+		return this.e1;
+	}
+	
+	public Exp gete2(){
+		return this.e2;
+	}
 	@Override
 	public Object accept(Visitor v) {
 		return v.visit(this);

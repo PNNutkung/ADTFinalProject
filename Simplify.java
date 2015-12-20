@@ -1,5 +1,5 @@
 
-public class DiffPlusExp implements Visitor {
+public class Simplify implements Visitor {
 
 	@Override
 	public Object visit(PlusExp n) {

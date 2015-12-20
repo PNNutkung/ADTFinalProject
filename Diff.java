@@ -2,39 +2,37 @@
 public class Diff implements Visitor {
 
 	@Override
-	public Object visit(PlusExp n) {
-		// TODO Auto-generated method stub
-		return null;
+	public Exp visit(PlusExp n) {
+		return new PlusExp((Exp) n.gete1().accept(this), (Exp) n.gete2().accept(this));
 	}
 
 	@Override
-	public Object visit(MinusExp n) {
-		// TODO Auto-generated method stub
-		return null;
+	public Exp visit(MinusExp n) {
+		return new MinusExp((Exp) n.gete1().accept(this), (Exp) n.gete2().accept(this));
 	}
 
 	@Override
-	public Object visit(TimesExp n) {
-		// TODO Auto-generated method stub
-		return null;
+	public Exp visit(TimesExp n) {
+		return new PlusExp(new TimesExp((Exp) n.gete1().accept(this), (Exp) n.gete2()),
+				new TimesExp((Exp) n.gete1(), (Exp) n.gete2().accept(this)));
 	}
 
 	@Override
-	public Object visit(DivisionExp n) {
-		// TODO Auto-generated method stub
-		return null;
+	public Exp visit(DivisionExp n) {
+		return new DivisionExp(
+				new MinusExp(new TimesExp((Exp) n.gete1().accept(this), (Exp) n.gete2()),
+						new TimesExp((Exp) n.gete1(), (Exp) n.gete2().accept(this))),
+				new TimesExp((Exp) n.gete2(), (Exp) n.gete2()));
 	}
 
 	@Override
-	public Object visit(NumExp n) {
-		// TODO Auto-generated method stub
-		return null;
+	public Exp visit(NumExp n) {
+		return new NumExp("0");
 	}
 
 	@Override
-	public Object visit(VarExp n) {
-		// TODO Auto-generated method stub
-		return null;
+	public Exp visit(VarExp n) {
+		return new NumExp("1");
 	}
 
 }

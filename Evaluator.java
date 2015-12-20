@@ -28,7 +28,7 @@ public class Evaluator implements Visitor {
 
 	@Override
 	public Object visit(VarExp n) {
-		return (Integer)n.eval();
+		return n.getDatum();
 	}
 
 }

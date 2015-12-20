@@ -1,13 +1,13 @@
 
 public abstract class Exp {
-	private Exp left, right;
+	private Exp e1, e2;
 	private String datum;
 	public abstract Object accept(Visitor v);
-	public Exp getLeft() {
-		return this.left;
+	public Exp gete1() {
+		return this.e1;
 	}
-	public Exp getRight() {
-		return this.right;
+	public Exp gete2() {
+		return this.e2;
 		
 	}
 	public abstract int eval();

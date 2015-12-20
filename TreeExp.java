@@ -1,4 +1,4 @@
-
+import java.util.Stack;
 public class TreeExp {
 	public static void preOrder (Exp root) {
 		preOrderhelp(root);
@@ -8,8 +8,8 @@ public class TreeExp {
 	private static void preOrderhelp (Exp node) {
 		if (node == null) return;
 		System.out.print(node.getDatum() + " ");
-		preOrderhelp(node.getLeft());
-		preOrderhelp(node.getRight());
+		preOrderhelp(node.gete1());
+		preOrderhelp(node.gete2());
 	}
 	public static void inOrder (Exp root) {
 		inOrderhelp(root);
@@ -18,11 +18,11 @@ public class TreeExp {
 
 	private static void inOrderhelp (Exp node) {
 		if (node == null) return;
-		if(node.getLeft() != null)System.out.print("(");
-		inOrderhelp(node.getLeft());
+		if(node.gete1() != null)System.out.print("(");
+		inOrderhelp(node.gete1());
 		System.out.print(node.getDatum() /*+ " "*/);
-		inOrderhelp(node.getRight());
-		if(node.getRight() != null)System.out.print(")");
+		inOrderhelp(node.gete2());
+		if(node.gete2() != null)System.out.print(")");
 	}
 	public static void postOrder (Exp root) {
 		postOrderhelp(root);
@@ -31,13 +31,13 @@ public class TreeExp {
 
 	private static void postOrderhelp (Exp node) {
 		if (node == null) return;
-		postOrderhelp(node.getLeft());
-		postOrderhelp(node.getRight());
+		postOrderhelp(node.gete1());
+		postOrderhelp(node.gete2());
 		System.out.print(node.getDatum() + " ");
 	}
 
 	public static Exp makeExpTree(String postfix) {
-		final ListStack stack = new ListStack();
+		final Stack<Exp> stack = new Stack<Exp>();
 		for(int i = 0 ; i < postfix.length() ; ++i){
 			char current = postfix.charAt(i);
 			if( "+-*/".indexOf(current) != -1) {
@@ -50,10 +50,12 @@ public class TreeExp {
 					case '/': stack.push(new DivisionExp(left,right)); break;
 				}
 			} else {
-				if(current == 'x')
-					stack.push(new VarExp());
-				else
+				if(current == 'x'){
+					stack.push(new VarExp("x"));
+				}
+				else {
 					stack.push(new NumExp(current+""));
+				}
 			}
 		}
 		return (Exp) stack.peek();
@@ -111,11 +113,11 @@ public class TreeExp {
 
 	public static void printTree(Exp root5, int level ) {
 		if (root5 != null) {
-			printTree(root5.getRight(), level+1);
+			printTree(root5.gete2(), level+1);
 			for (int i=0; i<level; i++) System.out.print("  ");
 			System.out.println(root5.getDatum());
 			System.out.println();
-			printTree(root5.getLeft(), level+1);
+			printTree(root5.gete1(), level+1);
 		}
 	}
 }

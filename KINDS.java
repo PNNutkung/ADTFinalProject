@@ -5,6 +5,7 @@ public enum KINDS {
 	MULTIPLY(4),
 	DIVIDE(5),
 	OPERATOR(0),
+	VARIANCE(6),
 	NUMBER(1);
 	
 	private final int kind;

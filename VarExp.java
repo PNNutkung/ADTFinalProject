@@ -1,14 +1,15 @@
 
-public class VarExp extends Exp {	
-	public VarExp() {
-	}	
-	
+public class VarExp extends Exp {
+	private String datum;
+	public VarExp(String datum){
+		this.datum = datum;
+	}
 	public String getDatum(){
-		return "X";
+		return this.datum;
 	}
 	
 	public int eval(){
-		return 6;
+		return 1;
 	}
 	
 	public Object accept(Visitor v){

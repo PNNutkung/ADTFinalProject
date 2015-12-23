@@ -63,7 +63,7 @@ public class TreeExp {
 
 	public static String IntoPost(String infix) {
 		String postfix = new String();
-		ListStack stack = new ListStack();
+		Stack stack = new Stack();
 		char current;
 		for(int i = 0; i < infix.length(); ++i){
 			current = infix.charAt(i);

@@ -8,6 +8,7 @@ public class Simplify implements Visitor {
 		printInfix(root.gete2());
 	}
 	public boolean isEqual(Exp left,Exp right){
+		temp = new StringBuffer();
 		printInfix(left);
 		String temp2 = temp.toString();
 		temp = new StringBuffer();

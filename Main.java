@@ -44,9 +44,9 @@ public class Main {
 		root3 = (Exp) root3.accept(diff);*/
 		Visitor simplify = new Simplify();
 		//Visitor mips = new MIPSAssemblyGeneration();
-		/*root3 = (Exp) root3.accept(diff);
+		root3 = (Exp) root3.accept(diff);
 		System.out.print("diff = ");
-		TreeExp.inOrder(root3);*/
+		TreeExp.inOrder(root3);
 		root3 = (Exp) root3.accept(simplify);
 		//System.out.println(root1.getLeft().getDatum());
 		System.out.print("Simplify : ");

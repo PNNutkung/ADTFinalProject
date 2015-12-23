@@ -33,7 +33,7 @@ public class Main {
 		//System.out.println("Print tree : ");
 		//TreeExp.printTree( root1, 0);
 		System.out.println("=====================");
-		String equation3 = "0/x";
+		String equation3 = "((x+2)+5*x)+((x+2)+5*x)";
 		System.out.println("Equation : "+equation3);
 		//System.out.println("Actual : "+((8+9*(4+5*7+6))+3*5+4));
 		String postfix3 = TreeExp.IntoPost(equation3);
@@ -43,6 +43,7 @@ public class Main {
 		/*Visitor diff2 = new Diff();
 		root3 = (Exp) root3.accept(diff);*/
 		Visitor simplify = new Simplify();
+		//Visitor mips = new MIPSAssemblyGeneration();
 		root3 = (Exp) root3.accept(simplify);
 		//System.out.println(root1.getLeft().getDatum());
 		System.out.print("Inorder : ");

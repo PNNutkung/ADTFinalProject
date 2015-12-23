@@ -1,15 +1,24 @@
 
 public class VarExp extends Exp {
 	private String datum;
+	private int value;
 	public VarExp(String datum){
 		this.datum = datum;
+		this.value = 6;
 	}
 	public String getDatum(){
 		return this.datum;
 	}
 	
 	public int eval(){
-		return 1;
+		return this.value;
+	}
+	
+	public void setValue(int value){
+		this.value = value;
+	}
+	public int getValue(){
+		return this.value;
 	}
 	
 	public Object accept(Visitor v){

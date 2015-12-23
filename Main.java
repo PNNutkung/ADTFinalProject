@@ -1,59 +1,99 @@
+import java.util.Scanner;
 
 public class Main {
+	static Visitor evaluator = new Evaluator();
+	static Visitor differentiater = new Diff();
+	static Visitor simplifier = new Simplify();
+	static Visitor mipsGenerator = new MIPSAssemblyGeneration();
+	public static void generateMIPS(String equation){
+		System.out.println("MIPS Generated: ");
+		String postfix = TreeExp.IntoPost(equation);
+		Exp root;
+		root = TreeExp.makeExpTree(postfix);
+		root = (Exp) root.accept(mipsGenerator);
+		TreeExp.inOrder(root);
+		System.out.println();
+	}
+	public static void differentiateAndSimplify(String equation){
+		String postfix = TreeExp.IntoPost(equation);
+		Exp root;
+		root = TreeExp.makeExpTree(postfix);
+		root = (Exp) root.accept(differentiater);
+		root = (Exp) root.accept(simplifier);
+		System.out.print("Differentaited and simplified: ");
+		TreeExp.inOrder(root);
+		System.out.println();
+	}
+	public static void simplify(String equation){
+		String postfix = TreeExp.IntoPost(equation);
+		Exp root;
+		root = TreeExp.makeExpTree(postfix);
+		root = (Exp) root.accept(simplifier);
+		System.out.print("Simplified: ");
+		TreeExp.inOrder(root);
+		System.out.println();
+	}
+	public static void evaluate(String equation){
+		String postfix = TreeExp.IntoPost(equation);
+		Exp root;
+		root = TreeExp.makeExpTree(postfix);
+		System.out.println("Evaluated: "+root.accept(evaluator));
+		System.out.println();
+	}
+	public static void differentiate(String equation){
+		String postfix = TreeExp.IntoPost(equation);
+		Exp root;
+		root = TreeExp.makeExpTree(postfix);
+		root = (Exp) root.accept(differentiater);
+		System.out.print("Differentaited: ");
+		TreeExp.inOrder(root);
+		System.out.println();
+	}
+	public static boolean isEND(String s){
+		return s.equals("END");
+	}
 	public static void main(String[] args) {
-		System.out.println("========================= Project 2 ===========================");
+		System.out.println("======================== FinalProject =========================");
 		System.out.println("============== 5710546372 Pipatpol Tanavongchinda =============");
-		String equation1 = "((8+9*(4+5*7+6))+3*5+4)";
-		System.out.println("Equation : "+equation1);
-		//System.out.println("Actual : "+((8+9*(4+5*7+6))+3*5+4));
-		String postfix1 = TreeExp.IntoPost(equation1);
-		System.out.println("IntoPost : "+postfix1);
-		Exp root1;
-		root1 = TreeExp.makeExpTree(postfix1);
-		Visitor v = new Evaluator();
-		System.out.println("Result : "+root1.accept(v));
-		//System.out.println(root1.getLeft().getDatum());
-		System.out.print("Inorder : ");
-		TreeExp.inOrder(root1);
-		//System.out.println("Print tree : ");
-		//TreeExp.printTree( root1, 0);
-		System.out.println("=====================");
-		String equation2 = "x*x+2";
-		System.out.println("Equation : "+equation2);
-		//System.out.println("Actual : "+((8+9*(4+5*7+6))+3*5+4));
-		String postfix2 = TreeExp.IntoPost(equation2);
-		System.out.println("IntoPost : "+postfix2);
-		Exp root2;
-		root2 = TreeExp.makeExpTree(postfix2);
-		Visitor diff = new Diff();
-		root2 = (Exp) root2.accept(diff);
-		//System.out.println(root1.getLeft().getDatum());
-		System.out.print("Inorder : ");
-		TreeExp.inOrder(root2);
-		//System.out.println("Print tree : ");
-		//TreeExp.printTree( root1, 0);
-		System.out.println("=====================");
-		String equation3 = "(x*x) + (2*x) + 3";
-		System.out.println("Equation : "+equation3);
-		//System.out.println("Actual : "+((8+9*(4+5*7+6))+3*5+4));
-		String postfix3 = TreeExp.IntoPost(equation3);
-		System.out.println("IntoPost : "+postfix3);
-		Exp root3;
-		root3 = TreeExp.makeExpTree(postfix3);
-		/*Visitor diff2 = new Diff();
-		root3 = (Exp) root3.accept(diff);*/
-		Visitor simplify = new Simplify();
-		//Visitor mips = new MIPSAssemblyGeneration();
-		root3 = (Exp) root3.accept(diff);
-		System.out.print("diff = ");
-		TreeExp.inOrder(root3);
-		root3 = (Exp) root3.accept(simplify);
-		//System.out.println(root1.getLeft().getDatum());
-		System.out.print("Simplify : ");
-		TreeExp.inOrder(root3);
-		//System.out.println("Print tree : ");
-		//TreeExp.printTree( root1, 0);
-		System.out.println("=====================");
-
+		while(true){
+			System.out.print("Please enter your equation(Type \"END\" to exit).: ");
+			Scanner input = new Scanner(System.in);
+			String equation = input.nextLine();
+			if(isEND(equation)) {
+				System.out.println("Thank you for using.");
+				System.out.println("======================= End of program ========================");
+				break;
+			}
+			while(true){
+				System.out.println("Select mode:");
+				System.out.printf("%d \t%s\n%d \t%s\n%d \t%s\n%d \t%s\n%d \t%s\n%d \t%s\n",
+						1,"Evaluate.",2,"Differentiate.",3,"Simplify.",4,"Differentiate and simplify.",
+						5,"Generate MIPS Assembly.",6,"Input new equation.");
+				System.out.print("Enter: ");
+				int choice = input.nextInt();
+				if(choice == 1){
+					evaluate(equation);
+				}
+				else if(choice == 2){
+					differentiate(equation);
+				}
+				else if(choice == 3){
+					simplify(equation);
+				}
+				else if(choice == 4){
+					differentiateAndSimplify(equation);
+				}
+				else if(choice == 5){
+					generateMIPS(equation);
+				}
+				else if(choice == 6){
+					break;
+				}
+				else {
+					System.out.println("Please enter only 1 to 6.\n");
+					continue;
+				}
+			}
+		}
 	}
 }

@@ -1,5 +1,8 @@
 ADT Lecture Final Project by 5710546372 Pipatpol Tanavongchinda
 =======
+
+The Visitor Design Pattern, Differentiation, and Assembly Code Generation for Infix Expression.
+
 How to compile and run ?
 -----
 Use `javac` in command line to compile **Main.java** or use IDE (like eclipse or IntelliJ IDEA).

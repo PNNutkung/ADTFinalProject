@@ -16,4 +16,4 @@ Any known bugs and/or any incomplete parts.
 
 Warning
 ----
-If input has divide by zero, it will throw an exception.
+If input has divided by zero, it will throw an exception.

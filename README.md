@@ -13,6 +13,7 @@ Any known bugs and/or any incomplete parts.
     Ex. x+x+x It can't simplify to 3*x.
     * If input is evaluated value less than 0 my program can't simplify to negative value.
     Ex. 0 - x It can't simplify to -x.
+    * If input x+x after differentiate it can't simplify to 2.
 
 Warning
 ----
